@@ -138,7 +138,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="include\kernel32.cpp" />
+    <ClCompile Include="source\kernel32.cpp" />
     <ClCompile Include="source\mpr.cpp" />
   </ItemGroup>
   <ItemGroup>
