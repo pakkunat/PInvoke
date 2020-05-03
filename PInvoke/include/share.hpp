@@ -1,9 +1,6 @@
 #pragma once
 #include <windows.h>
 
-using namespace System;
-using namespace System::Collections::Generic;
-
 namespace P
 {
   namespace PInvoke
@@ -33,6 +30,13 @@ namespace P
       ErrNoNetwork = ERROR_NO_NETWORK,
       ErrNotConnected = ERROR_NOT_CONNECTED,
       ErrOpenFiles = ERROR_OPEN_FILES
+    };
+
+    public enum class HResult
+    {
+      Ok = S_OK,
+      False = S_FALSE,
+      Fail = E_FAIL
     };
   }
 }

@@ -52,8 +52,8 @@ namespace P
         CredReset = CONNECT_CRED_RESET
       };
 
-      /// https://docs.microsoft.com/en-us/windows/win32/api/winnetwk/ns-winnetwk-netresourcew
       /// https://docs.microsoft.com/en-us/windows/win32/api/winnetwk/ns-winnetwk-netresourcea
+      /// https://docs.microsoft.com/en-us/windows/win32/api/winnetwk/ns-winnetwk-netresourcew
       ref class NetResource
       {
       public:
@@ -61,34 +61,34 @@ namespace P
         Type Type;
         DisplayType DisplayType;
         Usage Usage;
-        String^ LocalName;
-        String^ RemoteName;
-        String^ Comment;
-        String^ Provider;
+        System::String^ LocalName;
+        System::String^ RemoteName;
+        System::String^ Comment;
+        System::String^ Provider;
       };
 
-      /// https://docs.microsoft.com/en-us/windows/win32/api/winnetwk/nf-winnetwk-wnetaddconnectionw
       /// https://docs.microsoft.com/en-us/windows/win32/api/winnetwk/nf-winnetwk-wnetaddconnectiona
-      static Ret WNetAddConnection(String^ remoteName, String^ password, String^ localName);
+      /// https://docs.microsoft.com/en-us/windows/win32/api/winnetwk/nf-winnetwk-wnetaddconnectionw
+      static Ret WNetAddConnection(System::String^ remoteName, System::String^ password, System::String^ localName);
 
-      /// https://docs.microsoft.com/en-us/windows/win32/api/winnetwk/nf-winnetwk-wnetaddconnection2w
       /// https://docs.microsoft.com/en-us/windows/win32/api/winnetwk/nf-winnetwk-wnetaddconnection2a
-      static Ret WNetAddConnection2(NetResource^ netResource, String^ password, String^ userName, Connect flags);
+      /// https://docs.microsoft.com/en-us/windows/win32/api/winnetwk/nf-winnetwk-wnetaddconnection2w
+      static Ret WNetAddConnection2(NetResource^ netResource, System::String^ password, System::String^ userName, Connect flags);
 
-      /// https://docs.microsoft.com/en-us/windows/win32/api/winnetwk/nf-winnetwk-wnetaddconnection3w
       /// https://docs.microsoft.com/en-us/windows/win32/api/winnetwk/nf-winnetwk-wnetaddconnection3a
-      static Ret WNetAddConnection3(IntPtr wndOwner, NetResource^ netResource, String^ password, String^ userName, Connect flags);
+      /// https://docs.microsoft.com/en-us/windows/win32/api/winnetwk/nf-winnetwk-wnetaddconnection3w
+      static Ret WNetAddConnection3(System::IntPtr wndOwner, NetResource^ netResource, System::String^ password, System::String^ userName, Connect flags);
 
-      /// https://docs.microsoft.com/en-us/windows/win32/api/winnetwk/nf-winnetwk-wnetcancelconnectionw
       /// https://docs.microsoft.com/en-us/windows/win32/api/winnetwk/nf-winnetwk-wnetcancelconnectiona
-      static Ret WNetCancelConnection(String^ name, bool force);
+      /// https://docs.microsoft.com/en-us/windows/win32/api/winnetwk/nf-winnetwk-wnetcancelconnectionw
+      static Ret WNetCancelConnection(System::String^ name, bool force);
 
-      /// https://docs.microsoft.com/en-us/windows/win32/api/winnetwk/nf-winnetwk-wnetcancelconnection2w
       /// https://docs.microsoft.com/en-us/windows/win32/api/winnetwk/nf-winnetwk-wnetcancelconnection2a
-      static Ret WNetCancelConnection2(String^ name, Connect flags, bool force);
+      /// https://docs.microsoft.com/en-us/windows/win32/api/winnetwk/nf-winnetwk-wnetcancelconnection2w
+      static Ret WNetCancelConnection2(System::String^ name, Connect flags, bool force);
 
-      /// https://docs.microsoft.com/en-us/windows/win32/api/winnetwk/nf-winnetwk-wnetgetlasterrorw
       /// https://docs.microsoft.com/en-us/windows/win32/api/winnetwk/nf-winnetwk-wnetgetlasterrora
+      /// https://docs.microsoft.com/en-us/windows/win32/api/winnetwk/nf-winnetwk-wnetgetlasterrorw
       //Ret GetLastError(Ret %error, String^ errorBuf, DWORD errorBufSize, );
     };
   }

@@ -6,12 +6,12 @@ namespace P
 {
   namespace PInvoke
   {
-    Ret Mpr::WNetAddConnection(String^ remoteName, String^ password, String^ localName)
+    Ret Mpr::WNetAddConnection(System::String^ remoteName, System::String^ password, System::String^ localName)
     {
       return (Ret)::WNetAddConnection(StrToChar(LPCTSTR, remoteName), StrToChar(LPCTSTR, password), StrToChar(LPCTSTR, localName));
     }
 
-    Ret Mpr::WNetAddConnection2(NetResource^ netResource, String^ password, String^ userName, Connect flags)
+    Ret Mpr::WNetAddConnection2(NetResource^ netResource, System::String^ password, System::String^ userName, Connect flags)
     {
       ::NETRESOURCE nr;
       nr.dwScope = (DWORD)netResource->Scope;
@@ -25,7 +25,7 @@ namespace P
       return (Ret)::WNetAddConnection2(&nr, StrToChar(LPCTSTR, password), StrToChar(LPCTSTR, userName), (DWORD)flags);
     }
 
-    Ret Mpr::WNetAddConnection3(IntPtr wndOwner, NetResource^ netResource, String^ password, String^ userName, Connect flags)
+    Ret Mpr::WNetAddConnection3(System::IntPtr wndOwner, NetResource^ netResource, System::String^ password, System::String^ userName, Connect flags)
     {
       ::NETRESOURCE nr;
       nr.dwScope = (DWORD)netResource->Scope;
@@ -39,12 +39,12 @@ namespace P
       return (Ret)::WNetAddConnection3((HWND)wndOwner.ToPointer(), &nr, StrToChar(LPCTSTR, password), StrToChar(LPCTSTR, userName), (DWORD)flags);
     }
 
-    Ret Mpr::WNetCancelConnection(String^ name, bool force)
+    Ret Mpr::WNetCancelConnection(System::String^ name, bool force)
     {
       return (Ret)::WNetCancelConnection(StrToChar(LPCTSTR, name), force);
     }
 
-    Ret Mpr::WNetCancelConnection2(String^ name, Connect flags, bool force)
+    Ret Mpr::WNetCancelConnection2(System::String^ name, Connect flags, bool force)
     {
       return (Ret)::WNetCancelConnection2(StrToChar(LPCTSTR, name), (DWORD)flags, force);
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -12,6 +13,26 @@ namespace P
   {
     static void Main(string[] args)
     {
+      var largeIcon = IntPtr.Zero;
+      var smallIcon = IntPtr.Zero;
+      var ret = Shell32.SHDefExtractIconW(@"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe", 0, 0, ref largeIcon, ref smallIcon, 256, 48);
+      if (ret == HResult.Ok)
+      {
+        Icon.FromHandle(largeIcon).ToBitmap().Save($"./large.ico");
+        Icon.FromHandle(smallIcon).ToBitmap().Save($"./small.ico");
+        User32.DestroyIcon(largeIcon);
+        User32.DestroyIcon(smallIcon);
+      }
+
+      var icons = Shell32.ExtractIconExW(@"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe");
+      for (var i = 0; i < icons.Count(); i++)
+      {
+        Icon.FromHandle(icons[i].Item1).ToBitmap().Save($"./large{i}.ico");
+        Icon.FromHandle(icons[i].Item2).ToBitmap().Save($"./small{i}.ico");
+        User32.DestroyIcon(icons[i].Item1);
+        User32.DestroyIcon(icons[i].Item2);
+      }
+
       var names = Kernel32.GetPrivateProfileSectionNames("./test.ini");
       Console.WriteLine("SectionNames");
       foreach (var n in names)

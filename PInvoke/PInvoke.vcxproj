@@ -140,12 +140,16 @@
   <ItemGroup>
     <ClCompile Include="source\kernel32.cpp" />
     <ClCompile Include="source\mpr.cpp" />
+    <ClCompile Include="source\shell32.cpp" />
+    <ClCompile Include="source\user32.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\share.hpp" />
     <ClInclude Include="include\kernel32.hpp" />
     <ClInclude Include="include\marshal.hpp" />
     <ClInclude Include="include\mpr.hpp" />
+    <ClInclude Include="include\shell32.hpp" />
+    <ClInclude Include="include\user32.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
