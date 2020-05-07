@@ -2,8 +2,6 @@
 #include <marshal.hpp>
 #include <kernel32.hpp>
 
-using namespace System::Runtime::InteropServices;
-
 namespace P
 {
   namespace PInvoke
@@ -30,10 +28,11 @@ namespace P
 
     generic <typename T> bool Kernel32::GetPrivateProfileStruct(System::String^ section, System::String^ key, T% object, System::String^ file)
     {
-      auto p = Marshal::AllocHGlobal(Marshal::SizeOf<T>());
-      auto ret = ::GetPrivateProfileStruct(StrToChar(LPCTSTR, section), StrToChar(LPCTSTR, key), p.ToPointer(), Marshal::SizeOf<T>(), StrToChar(LPCTSTR, file));
-      object = Marshal::PtrToStructure<T>(p);
-      Marshal::FreeHGlobal(p);
+      auto s = System::Runtime::InteropServices::Marshal::SizeOf<T>();
+      auto p = System::Runtime::InteropServices::Marshal::AllocHGlobal(s);
+      auto ret = ::GetPrivateProfileStruct(StrToChar(LPCTSTR, section), StrToChar(LPCTSTR, key), p.ToPointer(), s, StrToChar(LPCTSTR, file));
+      object = System::Runtime::InteropServices::Marshal::PtrToStructure<T>(p);
+      System::Runtime::InteropServices::Marshal::FreeHGlobal(p);
       return ret;
     }
 
@@ -59,10 +58,11 @@ namespace P
 
     generic <typename T> bool Kernel32::WritePrivateProfileStruct(System::String^ section, System::String^ key, T object, System::String^ file)
     {
-      auto p = Marshal::AllocHGlobal(Marshal::SizeOf<T>());
-      Marshal::StructureToPtr<T>(object, p, false);
-      auto ret = ::WritePrivateProfileStruct(StrToChar(LPCTSTR, section), StrToChar(LPCTSTR, key), p.ToPointer(), Marshal::SizeOf<T>(), StrToChar(LPCTSTR, file));
-      Marshal::FreeHGlobal(p);
+      auto s = System::Runtime::InteropServices::Marshal::SizeOf<T>();
+      auto p = System::Runtime::InteropServices::Marshal::AllocHGlobal(s);
+      System::Runtime::InteropServices::Marshal::StructureToPtr<T>(object, p, false);
+      auto ret = ::WritePrivateProfileStruct(StrToChar(LPCTSTR, section), StrToChar(LPCTSTR, key), p.ToPointer(), s, StrToChar(LPCTSTR, file));
+      System::Runtime::InteropServices::Marshal::FreeHGlobal(p);
       return ret;
     }
 
